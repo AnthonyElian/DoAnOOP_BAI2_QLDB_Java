@@ -298,7 +298,7 @@ public class DoiBong {
          }
      }
      
-     public void MenuHoatDong()
+     public void MenuHoatDong() throws IOException
      {
          int flag = 1;
          while (flag == 1)
