@@ -191,7 +191,7 @@ public class DoiBong {
         	 System.out.println("\t\t\t************************MENU************************\t\t\t");
         	 System.out.println("\t\t\t***      0. Nhap NV                              ***\t\t\t");
         	 System.out.println("\t\t\t***      1. Sap xep Nhan Vien theo Luong         ***\t\t\t");
-        	 System.out.println("\t\t\t***      2. Loc Nhan Vien theo Luong lon         ***\t\t\t");
+        	 System.out.println("\t\t\t***      2. Loc Nhan Vien theo Luong          ***\t\t\t");
         	 System.out.println("\t\t\t***      3. Xem Danh Sach Bac Si                 ***\t\t\t");
         	 System.out.println("\t\t\t***      4. Xem Danh Sach HLV Chien Thuat        ***\t\t\t");
         	 System.out.println("\t\t\t***      5. Xem Danh Sach HLV The Luc            ***\t\t\t");

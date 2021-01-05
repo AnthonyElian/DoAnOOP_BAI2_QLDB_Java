@@ -250,7 +250,7 @@ public class QuanLyNhanVien implements Quanly {
 		this.XuatDsHLVCT();
 		if (this.lHLVCT.size() != 0)
 		{
-			System.out.print("Ban muon chon HLC chien thuat so may: ");
+			System.out.print("Ban muon chon HLV chien thuat so may: ");
 			int key = input.nextInt();
 			return this.lHLVCT.get(key);
 		}
