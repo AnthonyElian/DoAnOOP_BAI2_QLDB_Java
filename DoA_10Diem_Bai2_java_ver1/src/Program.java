@@ -21,7 +21,7 @@ public class Program {
         	System.out.println("\t\t\t***            4. Hoat Dong                      ***\t\t\t");
         	System.out.println("\t\t\t***            5. Thoat                          ***\t\t\t");
         	System.out.println("\t\t\t****************************************************\t\t\t");
-        	System.out.print("Moi nhap lua chon cua ba => Your choice: ");
+        	System.out.print("Moi nhap lua chon cua ban => Your choice: ");
             int choice = input.nextInt();
             switch (choice)
             {

@@ -96,7 +96,7 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      8. Tong Luong Cau Thu                   ***\t\t\t");
         	 System.out.println("\t\t\t***      9. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
-        	 System.out.print("Moi nhap lua chon cua ba => Your choice: ");
+        	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
              switch(choice)
              {
@@ -187,7 +187,8 @@ public class DoiBong {
          }
      }
      
-     public void MenuQLNV() throws IOException
+     @SuppressWarnings("null")
+	public void MenuQLNV() throws IOException
      {   
          int flag = 1;
          while (flag == 1)
@@ -204,9 +205,10 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      8. Xem Danh Sach Nhan Vien Ve Sinh      ***\t\t\t");
         	 System.out.println("\t\t\t***      9. Tong Luong Nhan Vien                 ***\t\t\t");
         	 System.out.println("\t\t\t***     10. Tim kiem Nhan Vien theo Ten          ***\t\t\t");
-        	 System.out.println("\t\t\t***     11. Thoat                                ***\t\t\t");
+        	 System.out.println("\t\t\t***     11. Xem Ca Nhan                          ***\t\t\t");
+        	 System.out.println("\t\t\t***     12. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
-        	 System.out.print("Moi nhap lua chon cua ba => Your choice: ");
+        	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
              switch (choice)
              {
@@ -230,21 +232,33 @@ public class DoiBong {
                      {
                          List<CaNhan> temp = this.lNhanvien.LocTheoLuongLon();
                          System.out.println("Danh sach Nhan Vien co Luong lon hon x da nhap: ");
-                         for (var item : temp)
+                         if (temp == null)
+                        	 System.out.println("Khong co nhan vien nao co luong lon hon x!!");
+                         else
                          {
-                             item.Xuat();
-                             System.out.println();
-                         }
+                        	 for (var item : temp)
+                             {
+                                 item.Xuat();
+                                 System.out.println();
+                             }
+                         }                        
                          break;
                      }
                  case 3:
                      {
                          List<CaNhan> temp = this.lNhanvien.LocTheoLuongBe();
                          System.out.println("Danh sach Nhan Vien co Luong be hon x da nhap: ");
-                         for (var item : temp)
+                         if (temp != null)
                          {
-                             item.Xuat();
-                             System.out.println();
+                        	 System.out.println("Khong co nhan vien nao co luong be hon x!!");
+                         }
+                         else
+                         {
+                        	 for (var item : temp)
+                             {
+                                 item.Xuat();
+                                 System.out.println();
+                             }
                          }
                          break;
                      }
@@ -281,10 +295,18 @@ public class DoiBong {
                  case 10:
                  	{
                  		CaNhan temp = this.lNhanvien.TimkiemNVtheoTen();
-                 		temp.Xuat();
+                 		if (temp != null)
+                 			temp.Xuat();
+                 		else
+                 			System.out.println("Khong ton tai nhan vien nay!! ");
                  		break;
                  	}
                  case 11:
+                 	{
+                 		this.lNhanvien.XemcaNhan();
+                 		break;
+                 	}
+                 case 12:
                      {
                          flag = 0;
                          break;
@@ -312,7 +334,7 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      6. Da thu                               ***\t\t\t");
         	 System.out.println("\t\t\t***      7. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
-        	 System.out.print("Moi nhap lua chon cua ba => Your choice: ");
+        	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
              switch (choice)
              {

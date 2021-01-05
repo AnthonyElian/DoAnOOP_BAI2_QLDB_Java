@@ -193,7 +193,7 @@ public class QuanLyNhanVien {
 	
 	public BacSi chonBacsi()
     {
-        XuatDsBacSi();
+        this.XuatDsBacSi();
         if(this.lbacsi.size() != 0)
         {
         	System.out.print("Ban muon chon bac si so may: ");
@@ -215,17 +215,25 @@ public class QuanLyNhanVien {
 	public HLVTheLuc chonHLVTL()
     {
         this.XuatDsHLVTL();
-        System.out.print("Ban muon chon HLV the luc so may: ");
-        int key = input.nextInt();
-        return this.lHLVTL.get(key);
+        if (this.lHLVTL.size() != 0)
+        {
+        	System.out.print("Ban muon chon HLV the luc so may: ");
+            int key = input.nextInt();
+            return this.lHLVTL.get(key);
+        }
+        return null;
     }
 	
 	public HLVChienThuat chonHLVCT()
 	{
 		this.XuatDsHLVCT();
-		System.out.print("Ban muon chon HLC chien thuat so may: ");
-		int key = input.nextInt();
-		return this.lHLVCT.get(key);
+		if (this.lHLVCT.size() != 0)
+		{
+			System.out.print("Ban muon chon HLC chien thuat so may: ");
+			int key = input.nextInt();
+			return this.lHLVCT.get(key);
+		}
+		return null;
 	}
 	
 	public void XuatDsHLVCT()
@@ -239,7 +247,7 @@ public class QuanLyNhanVien {
 	
 	public void XuatDsNVBV()
     {
-        if (this.lHLVTL.size() == 0)
+        if (this.lNVBV.size() == 0)
         	System.out.println("Khong co nhan vien bao ve nao!");
         else
             for (var item : this.lNVBV)
@@ -250,7 +258,7 @@ public class QuanLyNhanVien {
 	
 	public void XuatDsNVVS()
     {
-        if (this.lHLVTL.size() == 0)
+        if (this.lNVVS.size() == 0)
         	System.out.println("Khong co nhan vien ve sinh nao!");
         else
             for (var item : this.lNVVS)
@@ -261,7 +269,7 @@ public class QuanLyNhanVien {
 	
 	public void XuatDsNhanVien()
     {
-        if (this.lHLVTL.size() == 0)
+        if (this.lcaNhan.size() == 0)
         	System.out.println("Khong co nhan vien nao!");
         else
             for (var item : this.lcaNhan)
@@ -276,8 +284,8 @@ public class QuanLyNhanVien {
         String key = br.readLine();
         for (int i=0; i<this.lcaNhan.size(); i++)
         {
-        	if (key.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-        		this.lcaNhan.get(i).Xuat();
+        	if (this.lcaNhan.get(i).sHoTen.equals(key))
+        		return this.lcaNhan.get(i);
         }
 		return null;
     }
@@ -285,7 +293,7 @@ public class QuanLyNhanVien {
 	public List<CaNhan> LocTheoLuongLon()
     {
 		System.out.print("Nhap Luong (x) de co danh sach cau thu luong > x: ");
-        int x = input.nextInt();
+        double x = input.nextDouble();
 
         List<CaNhan> temp = new ArrayList<CaNhan>();
         for (var item : this.lcaNhan)
@@ -297,7 +305,7 @@ public class QuanLyNhanVien {
 	public List<CaNhan> LocTheoLuongBe()
     {
 		System.out.print("Nhap Luong (x) de co danh sach cau thu luong < x: ");
-        int x = input.nextInt();
+		double x = input.nextDouble();
         
         List<CaNhan> temp = new ArrayList<CaNhan>();
         for (var item : this.lcaNhan)
@@ -309,47 +317,76 @@ public class QuanLyNhanVien {
 	public void XemcaNhan()
     {
         this.XuatDsNhanVien();
-        System.out.print("Ban Muon Xem Nhan Vien thu may: !");
+        System.out.print("Ban Muon Xem Thong Tin Nhan Vien thu may: !");
         int x = input.nextInt();
-        if(this.lcaNhan.get(x).sNghe == "bacsi")
+        try 
         {
-            for (int i=0; i<this.lcaNhan.size(); i++)
-            {
-            	if (this.lbacsi.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-            		this.lbacsi.get(i).Xuat();
-            }
+        	if (x<=this.lcaNhan.size()-1)
+        	{
+        		if(this.lcaNhan.get(x).sNghe == "bacsi")
+                {
+                    for (int i=0; i<this.lcaNhan.size(); i++)
+                    {
+                    	for (int j=0; j<this.lbacsi.size(); j++)
+                    	{
+                    		if (this.lbacsi.get(j).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
+                        		this.lbacsi.get(j).Xuat();
+                    	}
+                    }
+                }
+                else if (this.lcaNhan.get(x).sNghe == "HLVTL")
+                {
+                	for (int i=0; i<this.lcaNhan.size(); i++)
+                    { 
+                		for (int j=0; j<this.lHLVTL.size(); j++)
+                		{
+                			if (this.lHLVTL.get(j).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
+                        		this.lHLVTL.get(j).Xuat();
+                		}       
+                    }
+                }
+                else if(this.lcaNhan.get(x).sNghe == "HLVCT")
+                {
+                	for (int i=0; i<this.lcaNhan.size(); i++)
+                    {
+                		for (int j=0; j<this.lHLVCT.size(); j++)
+                		{
+                        	if (this.lHLVCT.get(j).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
+                        		this.lHLVCT.get(j).Xuat();
+                		}
+                    }
+                }
+                else if(this.lcaNhan.get(x).sNghe == "NVBaoVe")
+                {
+                	for (int i=0; i<this.lcaNhan.size(); i++)
+                    {
+                		for (int j=0; j<this.lNVBV.size(); j++)
+                		{
+                        	if (this.lNVBV.get(j).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
+                        		this.lNVBV.get(j).Xuat();
+                		}
+                    }
+                }
+                else if (this.lcaNhan.get(x).sNghe == "NVVeSinh")
+                {
+                	for (int i=0; i<this.lcaNhan.size(); i++)
+                    {
+                		for (int j=0; j<this.lNVVS.size(); j++)
+                		{
+                			if (this.lNVVS.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
+                        		this.lNVVS.get(i).Xuat();
+                		}          	
+                    }
+                }
+        	}
+        	else
+        	{
+        		throw new Exception("Input sai vui long kiem tra lai!!");
+        	}
         }
-        else if (this.lcaNhan.get(x).sNghe == "HLVTL")
+        catch(Exception e)
         {
-        	for (int i=0; i<this.lcaNhan.size(); i++)
-            {
-            	if (this.lHLVTL.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-            		this.lHLVTL.get(i).Xuat();
-            }
-        }
-        else if(this.lcaNhan.get(x).sNghe == "HLVCT")
-        {
-        	for (int i=0; i<this.lcaNhan.size(); i++)
-            {
-            	if (this.lHLVCT.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-            		this.lHLVCT.get(i).Xuat();
-            }
-        }
-        else if(this.lcaNhan.get(x).sNghe == "NVBaoVe")
-        {
-        	for (int i=0; i<this.lcaNhan.size(); i++)
-            {
-            	if (this.lNVBV.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-            		this.lNVBV.get(i).Xuat();
-            }
-        }
-        else if (this.lcaNhan.get(x).sNghe == "NVVeSinh")
-        {
-        	for (int i=0; i<this.lcaNhan.size(); i++)
-            {
-            	if (this.lNVVS.get(i).sHoTen.toLowerCase() == this.lcaNhan.get(i).sHoTen.toLowerCase())
-            		this.lNVVS.get(i).Xuat();
-            }
+        	System.out.println(e.getMessage());
         }
     }
 }

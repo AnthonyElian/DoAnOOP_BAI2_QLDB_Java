@@ -265,7 +265,7 @@ public class QuanLyCauThu {
                     String key = br.readLine();
                     for (int i=0; i<this.lDsCauThu.size(); i++)
                     {
-                    	if (this.lDsCauThu.get(i).sHoTen.toLowerCase() == key.toLowerCase())
+                    	if (this.lDsCauThu.get(i).sHoTen.equals(key))
                     		return this.lDsCauThu.get(i);
                     }
                     return null;
