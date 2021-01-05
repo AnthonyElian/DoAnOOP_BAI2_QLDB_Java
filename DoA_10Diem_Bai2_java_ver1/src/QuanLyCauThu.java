@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class QuanLyCauThu {
+public class QuanLyCauThu implements Quanly{
 
 	Scanner input = new Scanner(System.in);
 	
@@ -33,14 +33,19 @@ public class QuanLyCauThu {
 		this.lDsCauThu = lDsCauThu;
 	}
 	
-	public void Nhap() throws IOException
+	public void Nhap()
     {
         System.out.print("Moi nhap so luong cau thu trong doi bong: ");
         int cauthu = input.nextInt();
         for (int i = 0; i < cauthu; i++)
         {
             CauThu a = new CauThu();
-            a.Nhap();
+            try {
+				a.Nhap();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             this.lDsCauThu.add(a);
         }
     }

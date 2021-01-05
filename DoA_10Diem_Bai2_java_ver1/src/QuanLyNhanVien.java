@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuanLyNhanVien {
+public class QuanLyNhanVien implements Quanly {
 	Scanner input = new Scanner(System.in);
 	
 	private List<CaNhan> lcaNhan;
@@ -115,14 +115,19 @@ public class QuanLyNhanVien {
         return temp;
     }
 	
-	public void Nhap() throws IOException
+	public void Nhap()
     {
         System.out.print("Moi nhap so luong Bac Si: ");
         int bs = input.nextInt();
         for (int i = 0; i < bs; i++)
         {
             BacSi a = new BacSi();
-            a.Nhap();
+            try {
+				a.Nhap();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             this.lbacsi.add(a);
             this.lcaNhan.add(a);
         }
@@ -142,7 +147,12 @@ public class QuanLyNhanVien {
         for (int i = 0; i < hlvtl; i++)
         {
             HLVTheLuc a = new HLVTheLuc();
-            a.Nhap();
+            try {
+				a.Nhap();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             this.lcaNhan.add(a);
             this.lHLVTL.add(a);
         }
@@ -152,7 +162,12 @@ public class QuanLyNhanVien {
         for (int i = 0; i < nvbv; i++)
         {
             NVBaoVe a = new NVBaoVe();
-            a.Nhap();
+            try {
+				a.Nhap();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             this.lNVBV.add(a);
             this.lcaNhan.add(a);
         }
@@ -162,13 +177,18 @@ public class QuanLyNhanVien {
         for (int i = 0; i < nvvs; i++)
         {
             NVVeSinh a = new NVVeSinh();
-            a.Nhap();
+            try {
+				a.Nhap();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             this.lNVVS.add(a);
             this.lcaNhan.add(a);
         }
     }
 
-	public void SapxepTheoLuong()
+	public void Sort()
     {
         for (int i=0; i<this.lcaNhan.size() - 1; i++)
         {
@@ -267,7 +287,7 @@ public class QuanLyNhanVien {
             }
     }
 	
-	public void XuatDsNhanVien()
+	public void Xuat()
     {
         if (this.lcaNhan.size() == 0)
         	System.out.println("Khong co nhan vien nao!");
@@ -316,7 +336,7 @@ public class QuanLyNhanVien {
 	
 	public void XemcaNhan()
     {
-        this.XuatDsNhanVien();
+        this.Xuat();
         System.out.print("Ban Muon Xem Thong Tin Nhan Vien thu may: !");
         int x = input.nextInt();
         try 

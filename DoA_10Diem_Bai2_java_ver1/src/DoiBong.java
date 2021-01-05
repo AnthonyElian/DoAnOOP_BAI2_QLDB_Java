@@ -102,12 +102,7 @@ public class DoiBong {
              {
                  case 0:
                      {
-                         try {
-							this.lCauThu.Nhap();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						};
+                         this.lCauThu.Nhap();;
                          break;
                      }
                  case 1:
@@ -119,7 +114,6 @@ public class DoiBong {
                  case 2:
                      {
                     	 List<CauThu> temp = new ArrayList<CauThu>();
-                         //List<CauThu> temp = this.lCauThu.Loc();
                     	 for (var item : this.lCauThu.Loc())
                     	 {
                     		 temp.add(item);
@@ -214,18 +208,13 @@ public class DoiBong {
              {
                  case 0:
                      {
-                         try {
-							this.lNhanvien.Nhap();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+                         this.lNhanvien.Nhap();
                          break;
                      }
                  case 1:
                      {
-                         this.lNhanvien.SapxepTheoLuong();
-                         this.lNhanvien.XuatDsNhanVien();
+                         this.lNhanvien.Sort();
+                         this.lNhanvien.Xuat();
                          break;
                      }
                  case 2:

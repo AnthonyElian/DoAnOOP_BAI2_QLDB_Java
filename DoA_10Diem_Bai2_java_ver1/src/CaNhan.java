@@ -74,12 +74,20 @@ public abstract class CaNhan
         System.out.print("Moi nhap Ho Ten thanh vien: ");     
         this.sHoTen = br.readLine();
 
-        System.out.print("Nhap ngay gia nhap dinh dang dd/MM/yyyy: ");
-        this.dNgayGiaNhap = input.nextLine();
+        try {
+        	System.out.print("Nhap ngay gia nhap dinh dang dd/MM/yyyy: ");
+            this.dNgayGiaNhap = br.readLine();
+            if (this.dNgayGiaNhap.length() != 10)
+            	throw new Exception("Sai dinh dang!!");
+        }
+        catch(Exception e)
+        {
+        	System.out.println(e.getMessage());
+        	System.exit(0);
+        }
 
         System.out.print("Moi nhap Thoi Gian Hop Dong: ");
         this.iThoiGianHopDong = input.nextInt();
-
         
         System.out.print("Moi nhap Luong Co Ban cua thanh vien: ");
         this.dLuongCoBan = input.nextDouble();
