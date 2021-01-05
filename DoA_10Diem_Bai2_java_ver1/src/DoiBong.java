@@ -113,16 +113,17 @@ public class DoiBong {
                      }
                  case 2:
                      {
-                    	 List<CauThu> temp = new ArrayList<CauThu>();
-                    	 for (var item : this.lCauThu.Loc())
-                    	 {
-                    		 temp.add(item);
-                    	 }
-                         for (var item : temp)
+                    	 List<CauThu> temp = this.lCauThu.Loc();
+                         if (temp.size() == 0)
+                        	 System.out.println("Khong co Cau Thu nao thoa Dieu kien Loc");
+                         else
                          {
-                             item.Xuat();
-                         }
-                         System.out.println("abc~~" + temp.size());
+                        	 for (var item : temp)
+                             {
+                                 item.Xuat();
+                             }
+                         }                 	 
+                         //System.out.println("abc~~" + temp.size());
                          break;
                      }
                  case 3:
@@ -191,16 +192,15 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      0. Nhap NV                              ***\t\t\t");
         	 System.out.println("\t\t\t***      1. Sap xep Nhan Vien theo Luong         ***\t\t\t");
         	 System.out.println("\t\t\t***      2. Loc Nhan Vien theo Luong lon         ***\t\t\t");
-        	 System.out.println("\t\t\t***      3. Loc Nhan Vien theo Luong be          ***\t\t\t");
-        	 System.out.println("\t\t\t***      4. Xem Danh Sach Bac Si                 ***\t\t\t");
-        	 System.out.println("\t\t\t***      5. Xem Danh Sach HLV Chien Thuat        ***\t\t\t");
-        	 System.out.println("\t\t\t***      6. Xem Danh Sach HLV The Luc            ***\t\t\t");
-        	 System.out.println("\t\t\t***      7. Xem Danh Sach Nhan Vien Bao Ve       ***\t\t\t");
-        	 System.out.println("\t\t\t***      8. Xem Danh Sach Nhan Vien Ve Sinh      ***\t\t\t");
-        	 System.out.println("\t\t\t***      9. Tong Luong Nhan Vien                 ***\t\t\t");
-        	 System.out.println("\t\t\t***     10. Tim kiem Nhan Vien theo Ten          ***\t\t\t");
-        	 System.out.println("\t\t\t***     11. Xem Ca Nhan                          ***\t\t\t");
-        	 System.out.println("\t\t\t***     12. Thoat                                ***\t\t\t");
+        	 System.out.println("\t\t\t***      3. Xem Danh Sach Bac Si                 ***\t\t\t");
+        	 System.out.println("\t\t\t***      4. Xem Danh Sach HLV Chien Thuat        ***\t\t\t");
+        	 System.out.println("\t\t\t***      5. Xem Danh Sach HLV The Luc            ***\t\t\t");
+        	 System.out.println("\t\t\t***      6. Xem Danh Sach Nhan Vien Bao Ve       ***\t\t\t");
+        	 System.out.println("\t\t\t***      7. Xem Danh Sach Nhan Vien Ve Sinh      ***\t\t\t");
+        	 System.out.println("\t\t\t***      8. Tong Luong Nhan Vien                 ***\t\t\t");
+        	 System.out.println("\t\t\t***      9. Tim kiem Nhan Vien theo Ten          ***\t\t\t");
+        	 System.out.println("\t\t\t***     10. Xem Ca Nhan                          ***\t\t\t");
+        	 System.out.println("\t\t\t***     11. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
         	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
@@ -219,10 +219,9 @@ public class DoiBong {
                      }
                  case 2:
                      {
-                         List<CaNhan> temp = this.lNhanvien.LocTheoLuongLon();
-                         System.out.println("Danh sach Nhan Vien co Luong lon hon x da nhap: ");
-                         if (temp == null)
-                        	 System.out.println("Khong co nhan vien nao co luong lon hon x!!");
+                         List<CaNhan> temp = this.lNhanvien.Loc();
+                         if (temp.size() == 0)
+                        	 System.out.println("Khong co nhan vien nao thoa dieu kien Loc");
                          else
                          {
                         	 for (var item : temp)
@@ -235,67 +234,49 @@ public class DoiBong {
                      }
                  case 3:
                      {
-                         List<CaNhan> temp = this.lNhanvien.LocTheoLuongBe();
-                         System.out.println("Danh sach Nhan Vien co Luong be hon x da nhap: ");
-                         if (temp != null)
-                         {
-                        	 System.out.println("Khong co nhan vien nao co luong be hon x!!");
-                         }
-                         else
-                         {
-                        	 for (var item : temp)
-                             {
-                                 item.Xuat();
-                                 System.out.println();
-                             }
-                         }
+                         this.lNhanvien.XuatDsBacSi();
                          break;
                      }
                  case 4:
                      {
-                         this.lNhanvien.XuatDsBacSi();
+                         this.lNhanvien.XuatDsHLVCT();
                          break;
                      }
                  case 5:
                      {
-                         this.lNhanvien.XuatDsHLVCT();
+                         this.lNhanvien.XuatDsHLVTL();
                          break;
                      }
                  case 6:
                      {
-                         this.lNhanvien.XuatDsHLVTL();
+                         this.lNhanvien.XuatDsNVBV();
                          break;
                      }
                  case 7:
                      {
-                         this.lNhanvien.XuatDsNVBV();
+                         this.lNhanvien.XuatDsNVVS();
                          break;
                      }
                  case 8:
                      {
-                         this.lNhanvien.XuatDsNVVS();
-                         break;
-                     }
-                 case 9:
-                     {
                     	 System.out.println("Tong luong toan nhan vien la: " + this.lNhanvien.TinhLuongToanBoNV());
                          break;
                      }
-                 case 10:
+                 case 9:
                  	{
-                 		CaNhan temp = this.lNhanvien.TimkiemNVtheoTen();
+                 		CaNhan temp = this.lNhanvien.Search();
                  		if (temp != null)
                  			temp.Xuat();
                  		else
                  			System.out.println("Khong ton tai nhan vien nay!! ");
                  		break;
                  	}
-                 case 11:
+                 case 10:
                  	{
                  		this.lNhanvien.XemcaNhan();
                  		break;
                  	}
-                 case 12:
+                 case 11:
                      {
                          flag = 0;
                          break;

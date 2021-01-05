@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 public class QuanLyNhanVien implements Quanly {
 	Scanner input = new Scanner(System.in);
 	
@@ -296,18 +297,56 @@ public class QuanLyNhanVien implements Quanly {
             	System.out.println("Ten: " + item.sHoTen + " Chuc vu: " + item.sNghe);
     }
 	
-	public CaNhan TimkiemNVtheoTen() throws IOException
+	public CaNhan Search()
     { 
 		InputStreamReader ips=new InputStreamReader(System.in);
         BufferedReader br=new BufferedReader(ips);
 		System.out.print("Nhap ten Nhan Vien muon tim kiem : ");
-        String key = br.readLine();
-        for (int i=0; i<this.lcaNhan.size(); i++)
-        {
-        	if (this.lcaNhan.get(i).sHoTen.equals(key))
-        		return this.lcaNhan.get(i);
-        }
+        String key;
+		try {
+			key = br.readLine();
+		    for (int i=0; i<this.lcaNhan.size(); i++)
+	        {
+	        	if (this.lcaNhan.get(i).sHoTen.equals(key))
+	        		return this.lcaNhan.get(i);
+	        }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
 		return null;
+    }
+	
+	public List<CaNhan> Loc()
+    {
+        System.out.println("\t\t\t************************MENU************************\t\t\t");
+        System.out.println("\t\t\t***            1. Loc theo Luong > x             ***\t\t\t");
+        System.out.println("\t\t\t***            2. Loc theo Luong < x             ***\t\t\t");
+        System.out.println("\t\t\t***            3. Thoat                          ***\t\t\t");
+        System.out.println("\t\t\t****************************************************\t\t\t");
+        System.out.print("Moi nhap lua chon cua ban => Your choice: ");
+        int choice = input.nextInt();
+        List<CaNhan> temp = new ArrayList<CaNhan>();
+        switch (choice)
+        {
+            case 1:
+                {
+                    return LocTheoLuongLon();
+                }
+            case 2:
+                {
+                    return LocTheoLuongBe();
+                }
+            case 3:
+                {
+                    return temp;
+                }
+            default:
+                {
+                	System.out.println("Nhap sai, moi nhap lai!! ");
+                    return temp;
+                }
+        }
     }
 	
 	public List<CaNhan> LocTheoLuongLon()

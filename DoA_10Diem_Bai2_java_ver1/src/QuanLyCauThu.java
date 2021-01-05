@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
 
+@SuppressWarnings("rawtypes")
 public class QuanLyCauThu implements Quanly{
 
 	Scanner input = new Scanner(System.in);
@@ -250,7 +251,7 @@ public class QuanLyCauThu implements Quanly{
         return temp;
     }
     
-    public CauThu Search() throws IOException
+    public CauThu Search()
     {
     	System.out.println("\t\t\t************************MENU************************\t\t\t");
     	System.out.println("\t\t\t***            1. Ho ten                         ***\t\t\t");
@@ -267,12 +268,18 @@ public class QuanLyCauThu implements Quanly{
                 	InputStreamReader ips=new InputStreamReader(System.in);
                     BufferedReader br=new BufferedReader(ips);
                 	System.out.print("Nhap ten cau thu tim kiem : ");
-                    String key = br.readLine();
-                    for (int i=0; i<this.lDsCauThu.size(); i++)
-                    {
-                    	if (this.lDsCauThu.get(i).sHoTen.equals(key))
-                    		return this.lDsCauThu.get(i);
-                    }
+                    String key;
+					try {
+						key = br.readLine();
+						for (int i=0; i<this.lDsCauThu.size(); i++)
+	                    {
+	                    	if (this.lDsCauThu.get(i).sHoTen.equals(key))
+	                    		return this.lDsCauThu.get(i);
+	                    }
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}                 
                     return null;
                 }
             case 2:
