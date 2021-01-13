@@ -70,6 +70,7 @@ public class NVVeSinh extends CaNhan{
         super.Xuat();
         System.out.println("Ca lam cua Nhan Vien Ve Sinh la: " + this.iShift);
         System.out.println("Luong thuong them cua Nhan Vien Ve Sinh la: " + this.dThuong + " VND");
+        System.out.println("Luong cua Nhan Vien Ve Sinh la: " + this.TinhLuong() + " VND");
     }
 	
 	public static double operatorTong (NVVeSinh a, double num)
