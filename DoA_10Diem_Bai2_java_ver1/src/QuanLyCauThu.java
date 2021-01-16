@@ -362,4 +362,27 @@ public class QuanLyCauThu implements Quanly{
         }
         return temp;
     }
+    
+    public void xoaCT()
+    {
+        System.out.println("So luong cau thu hien tai la: " + this.lDsCauThu.size());
+        System.out.print("Ban muon xoa bao nhieu Cau thu: ");
+        int n = input.nextInt();
+        for (int i = 0; i < n; i++)
+        {
+        	System.out.println("Danh sach cau thu: ");
+            for (var item : this.lDsCauThu)
+            {
+            	System.out.println("Ten Cau Thu: " + item.sHoTen);
+            }
+            System.out.print("Nhap thu tu Cau thu muon xoa: ");
+            int x = input.nextInt();
+            this.xoa1CT(x);
+        }
+    }
+
+    public void xoa1CT(int x)
+    {
+        this.lDsCauThu.remove(x);
+    }
 }

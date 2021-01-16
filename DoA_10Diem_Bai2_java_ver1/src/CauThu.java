@@ -82,7 +82,19 @@ public class CauThu extends CaNhan
         this.iSoAo = soao;
     }
     
-	public CauThu() {}
+    public CauThu(String hoten, double luongcoban, String cmnd, int namsinh, int soao, int tinhtrangsuckhoe, int tinhtrangtheluc, String chanthuan, String vitridachinh)
+    {
+    	super(hoten, luongcoban, cmnd, namsinh);
+    	this.iSoAo = soao;
+        this.iTinhTrangSucKhoe = tinhtrangsuckhoe;
+        this.iTinhTrangTheLuc = tinhtrangtheluc;
+        this.sChanThuan = chanthuan;
+        this.sViTriDaChinh = vitridachinh;
+    }
+    
+	public CauThu() {
+		this.sNghe = "CauThu";
+	}
 
 	public void Nhap() throws IOException
 	{

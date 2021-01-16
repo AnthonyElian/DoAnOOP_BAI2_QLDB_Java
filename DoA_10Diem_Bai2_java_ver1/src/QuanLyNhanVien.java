@@ -448,4 +448,96 @@ public class QuanLyNhanVien implements Quanly {
         	System.out.println(e.getMessage());
         }
     }
+	
+	void xoaNV()
+	{
+	    System.out.println("So luong nhan vien hien tai la: " + this.lcaNhan.size());
+	    System.out.print("Ban muon xoa bao nhieu nhan vien: ");
+	    int dem = 0;
+	    int n = input.nextInt();
+	    for (int i = 0; i < n; i++)
+	    {
+	    	System.out.println("Danh sach nhan vien:");
+	        for (var item : this.lcaNhan)
+	        {
+	        	System.out.println("STT: " + dem + " Ho ten: " + item.sHoTen + " Chuc Vu: " + item.sNghe);
+	            dem++;
+	        }
+	        System.out.print("Nhap thu tu nhan vien muon xoa: ");
+	        int x = input.nextInt();
+	        this.xoa1NV(x);
+	    }
+	}
+
+	void xoa1NV(int x)
+	{
+	    CaNhan temp = this.lcaNhan.get(x);
+	    if (temp.sNghe == "bacsi")
+	    {
+	    	int j =0;
+	        for (int i = 0; i < this.lbacsi.size(); i++)
+	        {
+	            if (this.lbacsi.get(i).sHoTen == temp.sHoTen)
+	            {
+	            	j = i;
+	                break;
+	            }
+	        }
+	        this.lbacsi.remove(j);
+	    }
+	    if (temp.sNghe == "HLVCT")
+	    {
+	        int j = 0;
+	        for (int i = 0; i < this.lHLVCT.size(); i++)
+	        {
+	            if (this.lHLVCT.get(i).sHoTen == temp.sHoTen)
+	            {
+	            	j=i;
+	                break;
+	            }
+	        }
+	        this.lHLVCT.remove(j);
+	    }
+	    if (temp.sNghe == "HLVTL")
+	    {
+	        int j = 0;
+	        for (int i=0; i < this.lHLVTL.size(); i++)
+	        {
+	            if (this.lHLVTL.get(i).sHoTen == temp.sHoTen)
+	            {
+	            	j=i;
+	                break;
+	            }
+	        }
+	        this.lHLVTL.remove(j);
+	    }
+	    if (temp.sNghe == "NVBaoVe")
+	    {
+	        int j = 0;
+	        for (int i = 0; i < this.lNVBV.size(); i++)
+	        {
+	            if (this.lNVBV.get(i).sHoTen == temp.sHoTen)
+	            {
+	            	j=i;
+	                break;
+	            }
+	        }
+	        this.lNVBV.remove(j);
+	    }
+	    if (temp.sNghe == "NVVeSinh")
+	    {
+	        int j = 0;
+	        for (int i = 0; i < this.lNVVS.size(); i++)
+	        {
+	            if (this.lNVVS.get(i).sHoTen == temp.sHoTen)
+	            {
+	            	j=i;
+	                break;
+	            }
+	        }
+	        this.lNVVS.remove(j);
+	    }
+	    this.lcaNhan.remove(x);
+	}
+
 }

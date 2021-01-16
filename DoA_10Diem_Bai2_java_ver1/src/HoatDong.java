@@ -112,6 +112,81 @@ public class HoatDong {
         }
         System.out.print("Huan luyen vien: "+HLV.sHoTen);
         System.out.print("Chien thuat: " + chienthuat);
-        System.out.println("\t\t\t************************************************\t\t\t");
+        System.out.println("\n\t\t\t************************************************\t\t\t\n");
+    }
+    
+    static public void createCauThu(List<CauThu> chuyennhuong)
+    {
+    	CauThu a = new CauThu("nguyen van a", 30000000, "56893457", 1998, 1, 56, 72, "trai", "tienve");
+        CauThu b = new CauThu("nguyen van b", 20000000, "56630787", 2000, 90, 88, 12, "phai", "hauve");
+        CauThu c = new CauThu("nguyen van c", 67000000, "99637457", 1995, 57, 26, 82, "trai", "tiendao");
+        CauThu d = new CauThu("nguyen van d", 100000000, "63019457", 1998, 420, 100, 100, "phai", "tiendao");
+        CauThu e = new CauThu("nguyen van e", 12000000, "56891234", 2005, 1, 36, 22, "phai", "tiendao");
+        CauThu f = new CauThu("nguyen van f", 10000000, "12343457", 2004, 1, 46, 52, "phai", "tienve");
+        chuyennhuong.add(a); chuyennhuong.add(b); chuyennhuong.add(c); chuyennhuong.add(d); chuyennhuong.add(e); chuyennhuong.add(f);
+    }
+    
+    static public void ChuyenNhuong(QuanLyCauThu ct, List<CauThu> temp)
+    {
+    	Scanner input = new Scanner(System.in);
+    	System.out.println("Da den ki chuyen nhuong mua Dong, ban co muon mua them hay ban di cau thu ko? 1_Yes || 2_No");
+    	System.out.print("=> Your choice: "); int choice = input.nextInt();
+        if (choice == 1)
+        {
+            int flag = 1;
+            while (flag == 1)
+            {
+            	System.out.println("\t\t\t************************MENU************************\t\t\t");
+                System.out.println("\t\t\t***            1. Mua                            ***\t\t\t");
+                System.out.println("\t\t\t***            2. Ban                            ***\t\t\t");
+                System.out.println("\t\t\t***            3. Thoat                          ***\t\t\t");
+                System.out.println("\t\t\t****************************************************\t\t\t");
+                System.out.print("Moi nhap lua chon cua ban => Your choice: ");
+                int choice1 = input.nextInt();
+                switch (choice1)
+                {
+                case 1:
+                {
+                    int i = 0;
+                    for (var item : temp)
+                    {
+                        System.out.println("STT: " + i++ + " Ho ten: " + item.sHoTen + " Luong: " + item.TinhLuong());
+                    }
+                    System.out.print("Moi nhap STT cau thu muon mua: ");
+                    int n = input.nextInt();
+                    temp.get(n).dNgayGiaNhap = "16/01/2001";
+                    System.out.print("Ban muon ki hop dong thoi han bao lau: ");  int thoihan = input.nextInt();
+                    temp.get(n).iThoiGianHopDong = thoihan;
+                    temp.get(n).sNghe = "CauThu";
+                    ct.getlDsCauThu().add(temp.get(n));
+                    temp.remove(n);
+                    System.out.println("Successfully ~~ ");
+                    break;
+                }
+                case 2:
+                {
+                    int i = 0;
+                    for (var item : ct.getlDsCauThu())
+                    {
+                        System.out.println("STT: " + i++ + " Ho ten: " + item.sHoTen + " Luong: " + item.TinhLuong());
+                    }
+                    System.out.print("Ban muon ban cau thu so may: "); int stt = input.nextInt();
+                    ct.xoa1CT(stt);
+                    System.out.println("Successfully ~~ ");
+                    break;
+                }
+                case 3:
+                {
+                    flag = 0;
+                    break;
+                }
+                default:
+                {
+                    System.out.println("Nhap sai, moi nhap lai!! ");
+                    break;
+                }
+                }
+            }
+        }
     }
 }

@@ -63,6 +63,14 @@ public abstract class CaNhan
         this.dLuongCoBan = luongcoban;
         this.sCMND = cmnd;
     }
+    
+    public CaNhan(String hoten, double luongcoban, String cmnd, int namsinh)
+    {
+    	this.sHoTen = hoten;
+        this.dLuongCoBan = luongcoban;
+        this.sCMND = cmnd;
+        this.iNamsinh = namsinh;
+    }
 
     public void Nhap() throws IOException
     {
@@ -234,11 +242,11 @@ public abstract class CaNhan
         try {
         	//String startDate = simpleDateFormat.format(this.dNgayGiaNhap);
         	String endDate = simpleDateFormat.format(currentDate);
-        	
+    
         	date1 = simpleDateFormat.parse(this.dNgayGiaNhap);
         	date2 = simpleDateFormat.parse(endDate);
         	
-			temp = date2.getDate() - date1.getDate();
+			temp = date1.getDate() + this.iThoiGianHopDong - date2.getDate();
         	//return temp;
         }
         catch (Exception e)

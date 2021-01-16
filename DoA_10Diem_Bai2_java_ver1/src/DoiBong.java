@@ -12,7 +12,8 @@ public class DoiBong {
 	 //private San sanDoiBong;
 	 private QuanLyCauThu lCauThu;
 	 private QuanLyNhanVien lNhanvien;
-	 
+	 public List<CaNhan> expired;
+ 	 
 	 public String getsTenDoiBong()
 	 {
 		 return this.sTenDoiBong;
@@ -57,6 +58,7 @@ public class DoiBong {
 		// TODO Auto-generated constructor stub
 		this.lCauThu = new QuanLyCauThu();
         this.lNhanvien = new QuanLyNhanVien();
+        this.expired = new ArrayList<CaNhan>();
 	}
 
 	 public DoiBong(String tendoibong, String nhataitro)
@@ -78,6 +80,186 @@ public class DoiBong {
          System.out.print("Ten Nha Tai Tro cua Doi Bong: ");
          this.sTenNhaTaiTro = input.nextLine();
      }
+     
+     public void DanhSachHetHanHopDong()
+     {
+    	 for (int i = 0; i < this.lCauThu.getlDsCauThu().size(); i++)
+    	 {
+    		 if (this.lCauThu.getlDsCauThu().get(i).ThoiGianHopDongConLai() <= 0)
+    		 {
+    			 this.expired.add(this.lCauThu.getlDsCauThu().get(i));
+    		 }
+    	 }
+    	 for (int i = 0; i < this.lNhanvien.getlcaNhan().size(); i++)
+    	 {
+    		 if (this.lNhanvien.getlcaNhan().get(i).ThoiGianHopDongConLai() <= 0)
+    		 {
+    			 this.expired.add(this.lNhanvien.getlcaNhan().get(i));
+    		 }
+    	 }
+     }
+     
+     public void ThaoTacHopDong()
+     {
+    	 this.DanhSachHetHanHopDong();
+    	 if (this.expired.size() <= 0)
+    	 {
+    		 System.out.println("Khong co nhan vien nao het han hop dong !!");
+    	 }
+    	 else
+    	 {
+    		 int flag = 1;
+    		 while (flag == 1)
+    		 {
+    			 if (this.expired.size() == 0)
+    			 {
+    				 flag =0;
+    			 }
+    			 else
+    			 {
+    				 int dem =0;
+        			 System.out.println("Danh sach hen han hop dong la: ");
+        			 for (var item : this.expired)
+        			 {
+        				 System.out.println("STT: " + dem++ + " Ho ten: " + item.sHoTen + " Luong: " + item.TinhLuong());
+        			 }
+        			 System.out.print("1_Gia Han || 2_Kick => Your choice: ");
+        			 int n = input.nextInt();
+        			 switch(n)
+        			 {
+        			 case 1:
+        			 {
+        				 System.out.print("Ban muon gia han nhan vien thu may: ");
+                         int x = input.nextInt();
+                         if (this.expired.get(x).sNghe == "CauThu")
+                         {
+                             for (int i = 0; i < this.lCauThu.getlDsCauThu().size(); i++)
+                             {
+                                 if (this.lCauThu.getlDsCauThu().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                 {
+                                     System.out.print("Gia han hop dong bao nhieu nam: ");
+                                     this.lCauThu.getlDsCauThu().get(i).iThoiGianHopDong = input.nextInt();
+                                     this.lCauThu.getlDsCauThu().get(i).dNgayGiaNhap = "16/01/2021";
+                                     this.expired.remove(x);
+                                     break;
+                                 }
+                             }
+                         }
+                         else
+                         {
+                             int temp;
+                             for (int i = 0; i < this.lNhanvien.getlcaNhan().size(); i++)
+                             {
+                                 if (this.lNhanvien.getlcaNhan().get(i).sHoTen == this.expired.get(i).sHoTen)
+                                 {
+                                     System.out.print("Gia han hop dong bao nhieu nam?: ");
+                                     temp = input.nextInt();
+                                     this.lNhanvien.getlcaNhan().get(i).iThoiGianHopDong = temp;
+                                     this.lNhanvien.getlcaNhan().get(i).dNgayGiaNhap = "16/01/2021";
+                                     if (this.expired.get(x).sNghe == "bacsi")
+                                     {
+                                         for (int j = 0; j < this.lNhanvien.getlbacsi().size(); j++)
+                                         {
+                                             if (this.lNhanvien.getlbacsi().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                             {
+                                                 this.lNhanvien.getlbacsi().get(i).iThoiGianHopDong = temp;
+                                                 this.lNhanvien.getlbacsi().get(i).dNgayGiaNhap = "16/01/2021";
+                                                 break;
+                                             }
+                                         }
+                                     }
+                                     else if (this.expired.get(x).sNghe == "HLVCT")
+                                     {
+                                         for (int j = 0; j < this.lNhanvien.getlHLVCT().size(); j++)
+                                         {
+                                             if (this.lNhanvien.getlHLVCT().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                             {
+                                                 this.lNhanvien.getlHLVCT().get(i).iThoiGianHopDong = temp;
+                                                 this.lNhanvien.getlHLVCT().get(i).dNgayGiaNhap = "16/01/2001";
+                                             }
+                                         }
+                                     }
+                                     else if (this.expired.get(x).sNghe == "HLVTL")
+                                     {
+                                         for (int j = 0; j < this.lNhanvien.getlHLVTL().size(); j++)
+                                         {
+                                             if (this.lNhanvien.getlHLVTL().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                             {
+                                                 this.lNhanvien.getlHLVTL().get(i).iThoiGianHopDong = temp;
+                                                 this.lNhanvien.getlHLVTL().get(i).dNgayGiaNhap = "16/01/2021";
+                                             }
+                                         }
+                                     }
+                                     else if (this.expired.get(x).sNghe == "NVVeSinh")
+                                     {
+                                         for (int j = 0; j < this.lNhanvien.getlNVVS().size(); j++)
+                                         {
+                                             if (this.lNhanvien.getlNVVS().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                             {
+                                                 this.lNhanvien.getlNVVS().get(i).iThoiGianHopDong = temp;
+                                                 this.lNhanvien.getlNVVS().get(i).dNgayGiaNhap = "16/01/2021";
+                                             }
+                                         }
+                                     }
+                                     else if (this.expired.get(x).sNghe == "NVBaoVe")
+                                     {
+                                         for (int j = 0; j < this.lNhanvien.getlNVBV().size(); j++)
+                                         {
+                                             if (this.lNhanvien.getlNVBV().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                             {
+                                                 this.lNhanvien.getlNVBV().get(i).iThoiGianHopDong = temp;
+                                                 this.lNhanvien.getlNVBV().get(i).dNgayGiaNhap = "16/01/2021";
+                                             } 
+                                         }
+                                     }
+                                     this.expired.remove(x);
+                                     break;
+                                 }
+                             }
+                         }
+                         break;
+        			 }
+        			 case 2:
+        			 {
+        				 System.out.print("Ban muon kick nhan vien thu may: ");
+                         int x = input.nextInt();
+                         if (this.expired.get(x).sNghe != "CauThu")
+                         {
+                             int temp = 0;
+                             for (int i = 0; i < this.lNhanvien.getlcaNhan().size(); i++)
+                             {
+                                 if (this.lNhanvien.getlcaNhan().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                 {
+                                     temp = i;
+                                     break;
+                                 }
+                             }
+                             this.lNhanvien.xoa1NV(temp);
+                             this.expired.remove(x);
+                         }
+                         else
+                         {
+                             int temp = 0;
+                             for (int i = 0; i < this.lCauThu.getlDsCauThu().size(); i++)
+                             {
+                                 if (this.lCauThu.getlDsCauThu().get(i).sHoTen == this.expired.get(x).sHoTen)
+                                 {
+                                     temp = i;
+                                     break;
+                                 }
+                             }
+                             this.lCauThu.xoa1CT(temp);
+                             this.expired.remove(x);
+                         }
+                         break;
+        			 }
+        			 }
+        			 System.out.print("1_De tiep tuc !! => Your choice: ");
+                     flag = input.nextInt();
+    			 }
+    		 }
+    	 }
+     }
 	 
      public void MenuQLCT() throws IOException
      {
@@ -94,7 +276,8 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      6. Cau Thu co The Luc Tot Nhat          ***\t\t\t");
         	 System.out.println("\t\t\t***      7. Cau Thu co Suc Khoe Yeu Nhat         ***\t\t\t");
         	 System.out.println("\t\t\t***      8. Tong Luong Cau Thu                   ***\t\t\t");
-        	 System.out.println("\t\t\t***      9. Thoat                                ***\t\t\t");
+        	 System.out.println("\t\t\t***      9. Xoa Cau Thu                          ***\t\t\t");
+        	 System.out.println("\t\t\t***     10. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
         	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
@@ -169,6 +352,23 @@ public class DoiBong {
                          break;
                      }
                  case 9:
+                 	{
+                 		if (this.lCauThu.getlDsCauThu().size() <= 0)
+                 		{
+                            System.out.println("Vui long nhap it nhat mot cau thu !! ");
+                 		}
+                        else
+                        {
+                            this.lCauThu.xoaCT();
+                            System.out.println("Danh sach cau thu sau khi xoa: ");
+                            for (var item : this.lCauThu.getlDsCauThu())
+                            {
+                                System.out.println("Ten cau thu: " + item.sHoTen);
+                            }
+                        }                         
+                        break;
+                 	}
+                 case 10:
                      {
                          flag = 0;
                          break;
@@ -191,7 +391,7 @@ public class DoiBong {
         	 System.out.println("\t\t\t************************MENU************************\t\t\t");
         	 System.out.println("\t\t\t***      0. Nhap NV                              ***\t\t\t");
         	 System.out.println("\t\t\t***      1. Sap xep Nhan Vien theo Luong         ***\t\t\t");
-        	 System.out.println("\t\t\t***      2. Loc Nhan Vien theo Luong          ***\t\t\t");
+        	 System.out.println("\t\t\t***      2. Loc Nhan Vien theo Luong             ***\t\t\t");
         	 System.out.println("\t\t\t***      3. Xem Danh Sach Bac Si                 ***\t\t\t");
         	 System.out.println("\t\t\t***      4. Xem Danh Sach HLV Chien Thuat        ***\t\t\t");
         	 System.out.println("\t\t\t***      5. Xem Danh Sach HLV The Luc            ***\t\t\t");
@@ -200,7 +400,8 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      8. Tong Luong Nhan Vien                 ***\t\t\t");
         	 System.out.println("\t\t\t***      9. Tim kiem Nhan Vien theo Ten          ***\t\t\t");
         	 System.out.println("\t\t\t***     10. Xem Ca Nhan                          ***\t\t\t");
-        	 System.out.println("\t\t\t***     11. Thoat                                ***\t\t\t");
+        	 System.out.println("\t\t\t***     11. Xoa Nhan Vien                        ***\t\t\t");
+        	 System.out.println("\t\t\t***     12. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
         	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
@@ -277,6 +478,20 @@ public class DoiBong {
                  		break;
                  	}
                  case 11:
+                 {
+                	 if (this.lNhanvien.getlcaNhan().size() <= 0)
+                         System.out.println("Vui long nhap it nhat mot nhan vien !!");
+                     else
+                     {
+                         this.lNhanvien.xoaNV();
+                         for (var item : this.lNhanvien.getlcaNhan())
+                         {
+                             System.out.println("Ten nhan vien: " + item.sHoTen + " Chuc vu: " + item.sNghe);
+                         }
+                     }                
+                     break;
+                 }
+                 case 12:
                      {
                          flag = 0;
                          break;
@@ -292,6 +507,8 @@ public class DoiBong {
      
      public void MenuHoatDong() throws IOException
      {
+    	 List<CauThu> tmp = new ArrayList<CauThu>();
+    	 HoatDong.createCauThu(tmp);
          int flag = 1;
          while (flag == 1)
          {
@@ -302,7 +519,9 @@ public class DoiBong {
         	 System.out.println("\t\t\t***      4. Huan Luyen The Luc Ca Doi            ***\t\t\t");
         	 System.out.println("\t\t\t***      5. Huan Luyen The Luc Cau Thu           ***\t\t\t");
         	 System.out.println("\t\t\t***      6. Da thu                               ***\t\t\t");
-        	 System.out.println("\t\t\t***      7. Thoat                                ***\t\t\t");
+        	 System.out.println("\t\t\t***      7. Thao tac hop dong                    ***\t\t\t");
+        	 System.out.println("\t\t\t***      8. Chuyen nhuong                        ***\t\t\t");
+        	 System.out.println("\t\t\t***      9. Thoat                                ***\t\t\t");
         	 System.out.println("\t\t\t****************************************************\t\t\t");
         	 System.out.print("Moi nhap lua chon cua ban => Your choice: ");
              int choice = input.nextInt();
@@ -391,6 +610,16 @@ public class DoiBong {
                      break;
                  }
 	             case 7:
+	             {
+	            	 this.ThaoTacHopDong();
+	            	 this.expired.clear();
+	            	 break;
+	             }
+	             case 8:
+	             {
+	            	 HoatDong.ChuyenNhuong(this.lCauThu, tmp);
+	             }
+	             case 9:
                  {
                      flag = 0;
                      break;

@@ -16,10 +16,12 @@ public class Program {
         {
         	System.out.println("\t\t\t************************MENU************************\t\t\t");
         	System.out.println("\t\t\t***            1. Quan Ly Cau Thu                ***\t\t\t");
-        	System.out.println("\t\t\t***            2. Quan Ly Nhan Vien              ***\t\t\t");
-        	System.out.println("\t\t\t***            3. Quan Ly San                    ***\t\t\t");
-        	System.out.println("\t\t\t***            4. Hoat Dong                      ***\t\t\t");
-        	System.out.println("\t\t\t***            5. Thoat                          ***\t\t\t");
+        	System.out.println("\t\t\t***            2. Xuat danh sach Cau Thu         ***\t\t\t");
+        	System.out.println("\t\t\t***            3. Quan Ly Nhan Vien              ***\t\t\t");
+        	System.out.println("\t\t\t***            4. Xuat danh sach Nhan Vien       ***\t\t\t");
+        	System.out.println("\t\t\t***            5. Quan Ly San                    ***\t\t\t");
+        	System.out.println("\t\t\t***            6. Hoat Dong                      ***\t\t\t");
+        	System.out.println("\t\t\t***            7. Thoat                          ***\t\t\t");
         	System.out.println("\t\t\t****************************************************\t\t\t");
         	System.out.print("Moi nhap lua chon cua ban => Your choice: ");
             int choice = input.nextInt();
@@ -32,12 +34,44 @@ public class Program {
                         break;
                     }
                 case 2:
+                {
+                	int i = 0;
+                    if (a.getlCauThu().getlDsCauThu().size() != 0)
+                    {
+                        for (var item : a.getlCauThu().getlDsCauThu())
+                        {
+                            System.out.println("STT: " + i++ + " Ho ten: " + item.sHoTen + " Chuc vu: " + item.sNghe);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("chua nhap thong tin cau thu nao !!");
+                    }
+                    break;
+                }
+                case 3:
                     {
                         a.MenuQLNV();
                         co4 = 1;
                         break;
                     }
-                case 3:
+                case 4:
+                {
+                	int i = 0;
+                    if (a.getlNhanVien().getlcaNhan().size() != 0)
+                    {
+                        for (var item : a.getlNhanVien().getlcaNhan())
+                        {
+                            System.out.println("STT: " + i++ + " Ho ten: " + item.sHoTen + " Chuc vu: " + item.sNghe);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("chua nhap thong tin nhan vien nao !!");
+                    }
+                    break;
+                }
+                case 5:
                     {
                         if (co == 1)
                         {
@@ -66,15 +100,16 @@ public class Program {
                         }
                         break;
                     }
-                case 4:
+                case 6:
                     {
-                        if (co3 == 1 && co4 == 1)
+                    	a.MenuHoatDong();
+                        /*if (co3 == 1 && co4 == 1)
                             a.MenuHoatDong();
                         else
-                        	System.out.println("Yeu cau phai nhap 1 va 2 truoc moi co the su dung Tinh Nang nay !!");
+                        	System.out.println("Yeu cau phai nhap 1 va 2 truoc moi co the su dung Tinh Nang nay !!");*/
                         break;
                     }
-                case 5:
+                case 7:
                     {
                         flag = 0;
                         break;
