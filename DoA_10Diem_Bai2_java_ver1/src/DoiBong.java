@@ -505,7 +505,7 @@ public class DoiBong {
          }
      }
      
-     public void MenuHoatDong() throws IOException
+     public void MenuHoatDong(San san) throws IOException
      {
     	 List<CauThu> tmp = new ArrayList<CauThu>();
     	 HoatDong.createCauThu(tmp);
@@ -606,7 +606,7 @@ public class DoiBong {
                          break;
                      }
                      HLVChienThuat hlv = this.lNhanvien.chonHLVCT();
-                     HoatDong.DaGiaoLuu(this.lCauThu.getlDsCauThu(), hlv);
+                     HoatDong.DaGiaoLuu(this.lCauThu.getlDsCauThu(), hlv, san);
                      break;
                  }
 	             case 7:

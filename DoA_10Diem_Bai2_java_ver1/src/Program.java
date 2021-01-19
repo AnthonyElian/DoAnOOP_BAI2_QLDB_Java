@@ -98,15 +98,17 @@ public class Program {
                             else 
                             	System.out.println("Doi bong khong co San!! ");
                         }
+                        co3 = 1;
                         break;
                     }
                 case 6:
                     {
-                    	a.MenuHoatDong();
-                        /*if (co3 == 1 && co4 == 1)
-                            a.MenuHoatDong();
-                        else
-                        	System.out.println("Yeu cau phai nhap 1 va 2 truoc moi co the su dung Tinh Nang nay !!");*/
+                    	if (co3 == 1)
+                    		a.MenuHoatDong(san);
+                    	else
+                    	{
+                    		System.out.println("Tinh nang nay can thong tin tu San vui long nhap san.");
+                    	}
                         break;
                     }
                 case 7:

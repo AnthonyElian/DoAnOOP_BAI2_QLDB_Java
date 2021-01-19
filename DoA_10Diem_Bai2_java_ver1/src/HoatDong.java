@@ -93,8 +93,9 @@ public class HoatDong {
         CT.setiTinhTrangTheLuc(CT.getiTinhTrangTheLuc() + HLV.getiChiSoNangCaoTL());
     } 
     
-    static public void DaGiaoLuu(List<CauThu> listCT, HLVChienThuat HLV) throws IOException
+    static public void DaGiaoLuu(List<CauThu> listCT, HLVChienThuat HLV, San san) throws IOException
     {
+    	Scanner input = new Scanner(System.in);
     	InputStreamReader ips = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(ips);
     	System.out.println("Chon cau thu tham gia thi dau");
@@ -103,6 +104,36 @@ public class HoatDong {
         String chienthuat = HLV.ChonChienThuat();
         System.out.print("Nhap doi thu: ");
         String dt = br.readLine();
+        System.out.print("Ban muon da tren san nha:1 hay san khach:2 => Your choice: ");
+        int key = input.nextInt(); int flag;
+        String tensan = "";
+        if (key == 1)
+        {
+            if (san != null)
+            {
+                flag = 1;
+            }
+            else
+            {
+                flag = 2;
+                System.out.print("Doi tuyen khong co san, Moi nhap ten san khach: "); tensan = br.readLine();
+            }
+        }
+        else
+        {
+            flag = 2;
+            System.out.print("Moi nhap ten san khach: ");tensan = br.readLine();
+        }
+        int soLuong = 0;
+        if (flag == 1)
+        {
+            do
+            {
+            	System.out.print("Moi nhap so luong khan gia da mua ve: ");
+                soLuong = input.nextInt();
+
+            } while (san.getiSoLuongKhanGia() < soLuong);
+        }
         System.out.println("\t\t\t************************************************\t\t\t");
         System.out.println("Doi nha VS" + dt);
         System.out.println("Danh sach cau thu tham du!");
@@ -113,6 +144,41 @@ public class HoatDong {
         System.out.print("Huan luyen vien: "+HLV.sHoTen);
         System.out.print("Chien thuat: " + chienthuat);
         System.out.println("\n\t\t\t************************************************\t\t\t\n");
+        System.out.print("1_Thang || 2_Thua => Your choice: ");
+        int temp = input.nextInt();
+        if (temp == 1)
+        {
+            for (int i=0;i<listCT2.size();i++)
+            {
+                for (int j=0;j<listCT.size();j++)
+                {
+                    if (listCT2.get(i).sHoTen == listCT.get(j).sHoTen)
+                    {
+                        listCT.get(j).dLuongCoBan = listCT.get(j).dLuongCoBan + 500000;
+                        listCT.get(j).setiTinhTrangSucKhoe(listCT.get(j).getiTinhTrangSucKhoe() - 2);
+                        listCT.get(j).setiTinhTrangTheLuc(listCT.get(j).getiTinhTrangTheLuc() - 3);
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < listCT2.size(); i++)
+            {
+                for (int j = 0; j < listCT.size(); j++)
+                {
+                    if (listCT2.get(i).sHoTen == listCT.get(j).sHoTen)
+                    {
+                    	listCT.get(j).setiTinhTrangSucKhoe(listCT.get(j).getiTinhTrangSucKhoe() - 5);
+                        listCT.get(j).setiTinhTrangTheLuc(listCT.get(j).getiTinhTrangTheLuc() - 7);
+                    }
+                }
+            }
+        }
+        if (flag == 1)
+        {
+            System.out.println("Thu nhap cua san bong la: " + san.getdGiaVe()* soLuong);
+        }
     }
     
     static public void createCauThu(List<CauThu> chuyennhuong)
